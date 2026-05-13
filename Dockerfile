@@ -1,11 +1,6 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs20
 
-RUN curl -L https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz \
-    -o ffmpeg.tar.xz && \
-    tar -xJf ffmpeg.tar.xz && \
-    mv ffmpeg-*-static/ffmpeg /usr/local/bin/ && \
-    mv ffmpeg-*-static/ffprobe /usr/local/bin/ && \
-    rm -rf ffmpeg*
+RUN apt-get update &&     apt-get install -y ffmpeg &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
 
 COPY . /app/
 WORKDIR /app/
